@@ -1,3 +1,8 @@
+pytorch
+torchvision
+torchaudio
+mpi4py==3.1.4
+blobfile
 absl-py==0.15.0
 astunparse==1.6.3
 blessings==1.7
