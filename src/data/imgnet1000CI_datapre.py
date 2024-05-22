@@ -198,7 +198,7 @@ def prepare_dataset(dset, target_path, survey_order=True, joint=True, task_count
 
     if os.path.isdir(os.path.join(target_path, 'train')):
         shutil.copyfile(os.path.join(os.path.dirname(os.path.realpath(__file__)), "imgnet_classes.txt"),
-                            os.path.join(target_path, 'classes.txt'))
+                        os.path.join(target_path, 'classes.txt'))
     else:
         print("Already cleaned up original train")
 

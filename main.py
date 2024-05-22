@@ -1,11 +1,9 @@
 """Main training script."""
-import sys
 import traceback
 import argparse
 import shutil
 import os
 import torch
-import time
 
 import src.framework.lr_grid_train as lr_grid_single_task
 import src.framework.framework_train as heuristic_single_task
@@ -177,7 +175,7 @@ def main(method=None, dataset=None):
 
     parent_exp_dir = utils.get_train_results_path(args.tr_results_root_path, dataset, method.name,
                                                   model_name=base_model.name, gridsearch_name=args.gridsearch_name,
-                                                  exp_name=args.exp_name,args=args)
+                                                  exp_name=args.exp_name, args=args)
 
 
     if args.cleanup_exp and os.path.isdir(parent_exp_dir):

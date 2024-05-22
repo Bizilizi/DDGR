@@ -14,18 +14,19 @@ pip install blobfile
 pip install -r requirement.txt
 ```
 
-# Datasets
+# Usage
+To conduct our experiments quickly, you need the following steps.
 
 **<font size=5>CIFAR100</font>**
 ```
-Automatic download.
+python run_cifar100.py
 ```
 **<font size=5>ImageNet</font>**
 
 You should download the ImageNet manually and process the images into "src/data/datasets/ImageNet/imagenet-1000/".
 The directory is:
 ```
-├── py-DDGR1.0                               # The main code directory
+├── py-DDGR                               # The main code directory
 │   ├── src                
 │   │  ├── data 
 │   │  │  ├── datasets
@@ -42,19 +43,20 @@ Then run generate_imagenet.py and generate_imagenet_class.py in order.
 ```
 python generate_imagenet.py
 python generate_imagenet_class.py
+python run_imgnet1000.py
 ```
 **<font size=5>CORe50</font>**
 
-The dataset will be downloaded automatically. You can also download "core50_imgs.npz", "labels.pkl","LUP.pkl" and "paths.pkl" manually into "/src/data/datasets/core/core50CIREP".
-# Usage Example 
+You can directly run the experiments on CORe50 by the following command:
 ```
-python run_cifar100.py
+python run_core50.py
 ```
+The dataset will be downloaded automatically. You can also download "core50_imgs.npz", "labels.pkl","LUP.pkl" and "paths.pkl" manually into "/src/data/datasets/core/core50CIREP". And then run the above command.
 # Code Overview
 The file structure of directory is as follows:
 ```
 .
-├── py-DDGR1.0                            # The main code directory
+├── py-DDGR                               # The main code directory
 │   ├── src                
 │   │  ├── data                           # The directory contains the dataset.
 │   │  ├── framework                      # The directory contains the framework of continual learning.
@@ -68,5 +70,7 @@ The file structure of directory is as follows:
 │   ├── main.py                           # The main code file.
 │   ├── README.md                         # The readme file
 │   ├── requirements.txt                  # The file specifies the required environments
-│   ├── run_cifar100.py                   # The file of example.
+│   ├── run_cifar100.py                   # The file to conduct experiments on CIFAR100.
+│   ├── run_core50.py                     # The file to conduct experiments on CORe50.
+│   ├── run_imgnet1000.py                 # The file to conduct experiments on ImageNet.
 ```
