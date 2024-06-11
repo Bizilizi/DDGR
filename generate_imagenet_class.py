@@ -19,7 +19,7 @@ else:
 if not flag:
     print('train class is not equal to val class.')
 else:
-    file = open(os.path.join(os.path.dirname(utils.read_from_config(config, 'ds_root_path')), 'imgnet_classes.txt'), 'w')
+    file = open(os.path.join(os.path.dirname(utils.read_from_config(config, 'ds_root_path')),'imgnet_classes.txt'),'w')
 
     file.writelines([line+'\n' for line in class_name_train_list])
     file.close()
