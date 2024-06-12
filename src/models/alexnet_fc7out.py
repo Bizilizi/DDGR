@@ -12,6 +12,7 @@ try:
 except ImportError:
     from torch.utils.model_zoo import load_url as load_state_dict_from_url
 
+
 class NormalizeByChannelMeanStd(nn.Module):
     def __init__(self, mean, std):
         super(NormalizeByChannelMeanStd, self).__init__()
@@ -30,10 +31,10 @@ class NormalizeByChannelMeanStd(nn.Module):
 
 
 def normalize_fn(tensor, mean, std):
-
     mean = mean[None, :, None, None]
     std = std[None, :, None, None]
     return tensor.sub(mean).div(std)
+
 
 class AlexNet(nn.Module):
 
@@ -75,11 +76,17 @@ class AlexNet(nn.Module):
             x = x[:, label_set]
         return x
 
-def alexnetCI(pretrained=False, progress=True, **kwargs):
 
-    model = AlexNet(**kwargs)
+def alexnetCI(pretrained=False, progress=True, num_classes=100, **kwargs):
+    model = AlexNet(num_classes=num_classes)
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls['alexnet'],
                                               progress=progress)
         model.load_state_dict(state_dict)
+
+    model.classifier[-1] = nn.Sequential(
+        nn.Linear(4096, 3),
+        nn.Linear(3, num_classes),
+    )
+
     return model
