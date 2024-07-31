@@ -3,7 +3,7 @@ import os
 
 statue_out = []
 
-cmd = "CUDA_VISIBLE_DEVICES=0 python main.py --class_incremental --method_name DDGR --model_name alexnetCI_pretrained " \
+cmd = "CUDA_VISIBLE_DEVICES=0 python main.py --class_incremental --method_name DDGR --model_name alexnetCI " \
                 "--ds_name cifar100CI --batch_size 256 --num_epochs 100 --drop_margin 0.5 --max_attempts_per_task 1 " \
                 "--test --test_set test --test_overwrite_mode --max_task_count 5 --test_max_task_count 5 --CI_task_count 10 " \
                 "--classifier_scale 1.0 " \
@@ -30,7 +30,7 @@ cmd = "CUDA_VISIBLE_DEVICES=0 python main.py --class_incremental --method_name D
                 "--num_samples 20 --timestep_respacing 250 " \
                 "--DDGR_generator_factor 0.25 "
 os.system(cmd)
-cmd = "CUDA_VISIBLE_DEVICES=0 python main.py --class_incremental --method_name DDGR --model_name alexnetCI_pretrained " \
+cmd = "CUDA_VISIBLE_DEVICES=0 python main.py --class_incremental --method_name DDGR --model_name alexnetCI " \
                 "--ds_name cifar100CI --batch_size 256 --num_epochs 100 --drop_margin 0.5 --max_attempts_per_task 1 " \
                 "--test --test_set test --test_overwrite_mode --max_task_count 5 --test_max_task_count 5 --CI_task_count 5 " \
                 "--classifier_scale 1.0 " \
