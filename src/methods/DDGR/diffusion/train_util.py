@@ -238,19 +238,18 @@ class TrainLoop:
         def save_checkpoint(rate, params):
             state_dict = self.mp_trainer.master_params_to_state_dict(params)
             if dist.get_rank() == 0:
+                logger.log(f"saving model {rate}...")
                 if not rate:
                     filename = "model_000000.pt"
                 else:
                     filename = f"ema_{rate}_000000.pt"
-                logger.log(f"saving model {rate}. Path: {bf.join(self.exp_dir, filename)}")
                 with bf.BlobFile(bf.join(self.exp_dir, filename), "wb") as f:
                     th.save(state_dict, f)
         if best_flag:
             state_dict = self.mp_trainer.master_params_to_state_dict(self.mp_trainer.master_params)
             if dist.get_rank() == 0:
+                logger.log(f"saving best model ...")
                 filename = f"model000000.pt"
-                logger.log(f"saving best model. Path: {bf.join(self.exp_dir, filename)}")
-
                 with bf.BlobFile(bf.join(self.exp_dir, filename), "wb") as f:
                     th.save(state_dict, f)
 

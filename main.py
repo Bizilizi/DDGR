@@ -193,33 +193,25 @@ def main(method=None, dataset=None):
 
     print("Starting with ARGS={}\nManager={}".format(vars(args), vars(manager)))
     ds_paths, model_paths = [], []
-
     for task_counter in range(args.starting_task_count, args.max_task_count + 1):
         print("\n", "*" * 80, "\n", "TRAINING Task {}".format(task_counter), "\n", "*" * 80)
-
         args.task_counter = task_counter
         args.task_name = manager.dataset.get_taskname(args.task_counter)
         args.lrs = args.boot_lr_grid if task_counter == 1 else args.lr_grid
-
         manager.set_dataset(args)
-
         try:
             if args.no_framework:
                 lr_grid_single_task.lr_grid_single_task(args, manager, save_models_mode='all')
             else:
                 heuristic_single_task.framework_single_task(args, manager)
-
             ds_paths.append(manager.current_task_dataset_path)
             model_paths.append(manager.previous_task_model_path)
-
             args.models_path = model_paths
             args.datasets_path = ds_paths
-
         except RuntimeError as e:
             print("ERROR:", e)
             traceback.print_exc()
             break
-
     utils.print_stats()
 
     if args.test:
